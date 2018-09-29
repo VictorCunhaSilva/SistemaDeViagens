@@ -1,0 +1,134 @@
+-- Table: public."centroDeCusto"
+
+-- DROP TABLE public."centroDeCusto";
+
+CREATE TABLE public."centroDeCusto"
+(
+    id integer NOT NULL,
+    nome "char"[],
+    "valorAlocado" double precision,
+    "valorRestante" double precision,
+    CONSTRAINT "centroDeCusto_pkey" PRIMARY KEY (id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."centroDeCusto"
+    OWNER to postgres;
+
+---------------------------------------------------------------------------------------------------------------------
+
+-- Table: public.item
+
+-- DROP TABLE public.item;
+
+CREATE TABLE public.item
+(
+    sequencial integer NOT NULL,
+    descricao "char"[],
+    valor double precision,
+    "idPrestacao" integer NOT NULL,
+    CONSTRAINT item_pkey PRIMARY KEY (sequencial, "idPrestacao")
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.item
+    OWNER to postgres;
+
+---------------------------------------------------------------------------------------------------------------------
+
+-- Table: public."passagemAerea"
+
+-- DROP TABLE public."passagemAerea";
+
+CREATE TABLE public."passagemAerea"
+(
+    numero integer NOT NULL,
+    "idViagem" integer,
+    "cpfComprador" integer,
+    horario integer,
+    data integer,
+    CONSTRAINT "passagemAerea_pkey" PRIMARY KEY (numero)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."passagemAerea"
+    OWNER to postgres;
+
+---------------------------------------------------------------------------------------------------------------------
+
+-- Table: public."prestacaoDeConta"
+
+-- DROP TABLE public."prestacaoDeConta";
+
+CREATE TABLE public."prestacaoDeConta"
+(
+    "idViagem" integer,
+    "idUsuario" integer,
+    "idPrestacao" integer NOT NULL,
+    CONSTRAINT "prestacaoDeConta_pkey" PRIMARY KEY ("idPrestacao")
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."prestacaoDeConta"
+    OWNER to postgres;
+
+---------------------------------------------------------------------------------------------------------------------
+
+-- Table: public.usuario
+
+-- DROP TABLE public.usuario;
+
+CREATE TABLE public.usuario
+(
+    id integer NOT NULL,
+    username "char"[],
+    senha "char"[],
+    nome "char"[],
+    cpf integer,
+    CONSTRAINT usuario_pkey PRIMARY KEY (id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.usuario
+    OWNER to postgres;
+
+---------------------------------------------------------------------------------------------------------------------
+
+-- Table: public.viagem
+
+-- DROP TABLE public.viagem;
+
+CREATE TABLE public.viagem
+(
+    id integer NOT NULL,
+    destino "char"[],
+    origem "char"[],
+    horario integer,
+    "maxVagas" integer,
+    vagas integer,
+    preco double precision,
+    CONSTRAINT viagem_pkey PRIMARY KEY (id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.viagem
+    OWNER to postgres;
+
